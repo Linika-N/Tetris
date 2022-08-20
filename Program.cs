@@ -75,29 +75,42 @@ void ArrayPrint(int[,] array)       //Вывод на печать
 
 }
 
-int[,] 
-
-int[,] ArrayMove(int[,] array){
-    ConsoleKey key;
-    while ((key = Console.ReadKey(true).Key) != ConsoleKey.Enter){
-        switch (key){
-            case ConsoleKey.LeftArrow:
-                
-                break;
-            case ConsoleKey.RightArrow:
-                break;
-            case ConsoleKey.DownArrow:
-                break;
-
-        }
+int[,] ArrayMergeElement(int[,] array, int[,] element){     //Слияние элемента с полем
+    int[,] arr = array;
+    int[,] el = element;
+    for (int i = 4; i<8; i++){
+            arr[0,i]=el[0,i-4];
+            arr[1,i]=el[1,i-4];
     }
-
+    return arr;
 }
+
+// int[,] ArrayMove(int[,] array){
+//     ConsoleKey key;
+//     while ((key = Console.ReadKey(true).Key) != ConsoleKey.Enter){
+//         switch (key){
+//             case ConsoleKey.LeftArrow:
+                
+//                 break;
+//             case ConsoleKey.RightArrow:
+//                 break;
+//             case ConsoleKey.DownArrow:
+//                 break;
+
+//         }
+//     }
+
+// }
 
 
 // Программа
 Console.Clear();
 int[,] game_field = TetrisField();
 ArrayPrint(game_field);
+System.Console.WriteLine("Нажмите Enter");
+string key = Console.ReadKey().ToString();
+Console.Clear();
 int[,] el = TetrisElement();
 ArrayPrint(el);
+game_field = ArrayMergeElement(game_field, el);
+ArrayPrint(game_field);
